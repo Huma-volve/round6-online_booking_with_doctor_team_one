@@ -27,7 +27,7 @@ class LoginController extends Controller
         $data = $request->validated();
 
         $user = $this->loginRepo->findByEmail($data['email']);
-        if (!$user || ! $this->loginRepo->checkPassword($user,$data['password'])) {
+        if (!$user || ! $this->loginRepo->checkPassword($user, $data['password'])) {
             return response()->json([
                 'message' => 'Invalid email or password'
             ], 401);
@@ -52,18 +52,21 @@ class LoginController extends Controller
         $request->validate([
             'phone' => 'required',
         ]);
+        $user = $this->loginRepo->findByPhone($request->phone);
 
-        // توليد OTP
+        if (!$user) {
+            return response()->json([
+                'message' => 'Phone number not found'
+            ], 404);
+        }
+
         $otp = rand(100000, 999999);
         $token = Str::uuid()->toString();
-
-        // حفظه في Cache لمدة 5 دقايق
         Cache::put("otp_{$token}", [
             'phone' => $request->phone,
             'otp' => $otp,
         ], now()->addMinutes(5));
 
-        // ارسال SMS
         $basic  = new Basic(env('VONAGE_API_KEY'), env('VONAGE_API_SECRET'));
         $client = new Client($basic);
 
