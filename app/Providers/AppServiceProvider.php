@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Interfaces\PageRepositoryInterface;
 use App\Repositories\PageRepository;
+use App\Repositories\Interfaces\FaqRepositoryInterface;
+use App\Repositories\FaqRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PageRepositoryInterface::class,
             PageRepository::class
+        );
+
+        // Bind FaqRepositoryInterface to FaqRepository implementation
+        $this->app->bind(
+            FaqRepositoryInterface::class,
+            FaqRepository::class
         );
     }
 
