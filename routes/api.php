@@ -1,11 +1,11 @@
 <?php
-
+use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Api\FaqController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController as RegisterController;
 use App\Http\Controllers\Auth\LoginController as LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Api\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +44,24 @@ Route::prefix('pages')->group(function () {
     Route::put('/{type}', [PageController::class, 'update']); // Update page by type
 });
 
+/*
+|--------------------------------------------------------------------------
+| FAQ Routes
+|--------------------------------------------------------------------------
+|
+| Routes for managing Frequently Asked Questions (FAQs)
+|
+*/
+
+// Public FAQ routes
+Route::prefix('faqs')->group(function () {
+    Route::get('/', [FaqController::class, 'index']); // Get active FAQs
+    Route::get('/all', [FaqController::class, 'all']); // Get all FAQs
+    Route::get('/{id}', [FaqController::class, 'show']); // Get specific FAQ
+    Route::post('/', [FaqController::class, 'store']); // Create new FAQ
+    Route::put('/{id}', [FaqController::class, 'update']); // Update FAQ
+    Route::delete('/{id}', [FaqController::class, 'destroy']); // Delete FAQ
+});
 
 
 //Authentication
