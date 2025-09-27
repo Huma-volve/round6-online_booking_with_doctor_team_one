@@ -1,9 +1,11 @@
 <?php
-
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\FaqController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController as RegisterController;
+use App\Http\Controllers\Auth\LoginController as LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +62,15 @@ Route::prefix('faqs')->group(function () {
     Route::put('/{id}', [FaqController::class, 'update']); // Update FAQ
     Route::delete('/{id}', [FaqController::class, 'destroy']); // Delete FAQ
 });
+
+
+//Authentication
+Route::controller(RegisterController::class)->prefix('register')->group(function () {
+    Route::post('/email-register', [RegisterController::class, 'EmailRegister']);
+});
+Route::controller(LoginController::class)->prefix('login')->group(function () {
+    Route::post('/email-login', 'EmailLogin');
+    Route::post('phone-login', 'PhoneLogin');
+    Route::post('verify-phone-otp', 'verifyOtp');
+});
+Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
