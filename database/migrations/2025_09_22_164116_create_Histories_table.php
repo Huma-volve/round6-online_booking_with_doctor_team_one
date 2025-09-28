@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('specialties', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('icon')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('search_term');
+            $table->string('location')->nullable();
+            $table->decimal('search_lat', 10, 7)->nullable();
+            $table->decimal('search_long', 10, 7)->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('specialties');
+        Schema::dropIfExists('histories');
     }
 };

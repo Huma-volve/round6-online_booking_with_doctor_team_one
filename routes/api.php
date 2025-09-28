@@ -2,9 +2,11 @@
 
 
 use App\Http\Controllers\Api\AddressController;
-
+use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\Api\HistoryController;
+use App\Http\Controllers\Api\MajorController;
 use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -94,3 +96,19 @@ Route::controller(LoginController::class)->prefix('login')->group(function () {
     Route::post('verify-phone-otp', 'verifyOtp');
 });
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->group(function () {
+// Doctor and Specialist Search
+Route::apiResource('doctors', DoctorController::class)->only(['index', 'show']);
+
+Route::apiResource('specialists', MajorController::class)->only(['index', 'show']);
+
+});
+// Search History (Requires authentication)
+Route::middleware(['auth:sanctum', 'throttle:search-history'])
+    ->prefix('search-histories')
+    ->as('search-histories.')
+    ->group(function () {
+        Route::get('/', [HistoryController::class, 'index'])->name('index');
+        Route::post('/', [HistoryController::class, 'store'])->name('store');
+    });

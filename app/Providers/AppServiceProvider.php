@@ -11,7 +11,8 @@ use App\Repositories\Interfaces\UserProfileRepositoryInterface;
 use App\Repositories\Interfaces\UserAddressRepositoryInterface;
 use App\Repositories\UserProfileRepository;
 use App\Repositories\UserAddressRepository;
-
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -47,6 +48,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+    RateLimiter::for('search-history', function ($request) {
+        return [
+            // Limit: 30 requests per minute per user (or IP if not logged in)
+            Limit::perMinute(30)->by(optional($request->user())->id ?: $request->ip()),
+        ];
+    });
     }
 }

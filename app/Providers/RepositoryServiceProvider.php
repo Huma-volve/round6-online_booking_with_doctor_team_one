@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contracts\DoctorRepositoryInterface;
+use App\Repositories\Contracts\HistoryRepositoryInterface;
+use App\Repositories\Contracts\MajorRepositoryInterface;
+use App\Repositories\Eloquent\EloquentDoctorRepository;
+use App\Repositories\Eloquent\EloquentHistoryRepository;
+use App\Repositories\Eloquent\EloquentMajorRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\RegisterRepositoryInterface;
 use App\Repositories\RegisterRepository;
@@ -17,6 +23,9 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(RegisterRepositoryInterface::class,RegisterRepository::class);
         $this->app->bind(LoginRepositoryInterface::class,LoginRepository::class);
+        $this->app->bind(DoctorRepositoryInterface::class, EloquentDoctorRepository::class);
+        $this->app->bind(MajorRepositoryInterface::class, EloquentMajorRepository::class);
+        $this->app->bind(HistoryRepositoryInterface::class, EloquentHistoryRepository::class);
     }
 
     /**
