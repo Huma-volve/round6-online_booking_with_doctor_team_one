@@ -1,11 +1,16 @@
 <?php
 
+
 use App\Http\Controllers\Api\AddressController;
+
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController as RegisterController;
+use App\Http\Controllers\Auth\LoginController as LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,13 +69,27 @@ Route::prefix('faqs')->group(function () {
 });
 
 
-Route::middleware('auth:sanctum')->group(function () {});
-// Profile
-Route::put('/profile', [ProfileController::class, 'update']);
 
-// Addresses
-Route::get('/profile/addresses', [AddressController::class, 'index']);
-Route::post('/profile/addresses', [AddressController::class, 'store']);
-Route::put('/profile/addresses/{address}', [AddressController::class, 'update']);
-Route::delete('/profile/addresses/{address}', [AddressController::class, 'destroy']);
-Route::patch('/profile/addresses/{address}/default', [AddressController::class, 'setDefault']);
+Route::middleware('auth:sanctum')->group(function () {
+
+  Route::put('/profile', [ProfileController::class, 'update']);
+
+  Route::get('/profile/addresses', [AddressController::class, 'index']);
+  Route::post('/profile/addresses', [AddressController::class, 'store']);
+  Route::put('/profile/addresses/{address}', [AddressController::class, 'update']);
+  Route::delete('/profile/addresses/{address}', [AddressController::class, 'destroy']);
+  Route::patch('/profile/addresses/{address}/default', [AddressController::class, 'setDefault']);
+});
+
+
+
+//Authentication
+Route::controller(RegisterController::class)->prefix('register')->group(function () {
+    Route::post('/email-register', [RegisterController::class, 'EmailRegister']);
+});
+Route::controller(LoginController::class)->prefix('login')->group(function () {
+    Route::post('/email-login', 'EmailLogin');
+    Route::post('phone-login', 'PhoneLogin');
+    Route::post('verify-phone-otp', 'verifyOtp');
+});
+Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
