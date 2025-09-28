@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\Review\ReviewController;
 
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\FaqController;
@@ -94,3 +95,12 @@ Route::controller(LoginController::class)->prefix('login')->group(function () {
     Route::post('verify-phone-otp', 'verifyOtp');
 });
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
+
+
+// Review Routes
+Route::prefix('reviews')->controller(ReviewController::class)->group(function () {
+    Route::post('/', 'addOrUpdateReview');
+    Route::delete('/{doctorId}', 'deleteReview');
+    Route::get('/{doctorId}', 'getDoctorReviews');
+    Route::get('/{doctorId}/average', 'getDoctorAverageRating');
+});

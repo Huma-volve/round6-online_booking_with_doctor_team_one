@@ -16,4 +16,11 @@ class Doctor extends Model
     {
         return $this->hasMany(Favourite::class, 'doctor_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    
 }
+
