@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SocialAccoutns;
 use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\Catch_;
+use App\Repositories\Interfaces\SocialAuthInterface;
 
 class FacebookAuthController extends Controller
 {
+    protected SocialAuthInterface $facebookAuth;
+    public function __construct(SocialAuthInterface $facebookAuth)
+    {
+        $this->facebookAuth = $facebookAuth;
+    }
     public function handleFacebookToken(Request $request)
     {
         try {
@@ -29,28 +32,16 @@ class FacebookAuthController extends Controller
             }
             $facebookUser = Socialite::driver('facebook')->userFromToken($request->access_token);
 
-            $socialAccount = SocialAccoutns::where('provider', 'facebook')
-                ->where('provider_id', $facebookUser->getId())->first();
+            $socialAccount = $this->facebookAuth->getSocialAccount($facebookUser);
 
             if ($socialAccount) {
                 $user = $socialAccount->user;
             } else {
-                $user = User::where('email', $facebookUser->getEmail())->first();
+                $user = $this->facebookAuth->checkUserExists($facebookUser);
                 if (!$user) {
-                    $user = User::create([
-                        'name' => $facebookUser->getName(),
-                        'email' => $facebookUser->getEmail(),
-                        'password' => bcrypt(Str::random(8)),
-                        'phone' => null,
-                        'role' => 'patient',
-                        'email_verified_at' => now(),
-                    ]);
+                    $user = $this->facebookAuth->createUser($facebookUser);
                 }
-                SocialAccoutns::create([
-                    'user_id' => $user->id,
-                    'provider' => 'facebook',
-                    'provider_id' => $facebookUser->getId(),
-                ]);
+                $this->facebookAuth->createSocialAccount($facebookUser, $user);
             }
             $token = $user->createToken('auth_token')->plainTextToken;
 

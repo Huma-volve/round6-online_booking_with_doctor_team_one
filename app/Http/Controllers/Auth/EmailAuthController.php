@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRegisterRequest;
-use App\Repositories\RegisterRepositoryInterface;
+use App\Repositories\Interfaces\RegisterRepositoryInterface;
 use App\Http\Requests\LoginRequest;
-use App\Repositories\LoginRepositoryInterface;
+use App\Repositories\Interfaces\LoginRepositoryInterface;
 
 class EmailAuthController extends Controller
 {
