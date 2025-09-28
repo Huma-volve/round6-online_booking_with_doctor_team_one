@@ -9,9 +9,10 @@ use App\Repositories\FaqRepository;
 
 use App\Repositories\Interfaces\UserProfileRepositoryInterface;
 use App\Repositories\Interfaces\UserAddressRepositoryInterface;
+use App\Repositories\Interfaces\UserPaymentMethodRepositoryInterface;
 use App\Repositories\UserProfileRepository;
 use App\Repositories\UserAddressRepository;
-
+use App\Repositories\UserPaymentMethodRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -39,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserAddressRepositoryInterface::class,
             UserAddressRepository::class
+        );
+        $this->app->bind(
+            UserPaymentMethodRepositoryInterface::class,
+            UserPaymentMethodRepository::class
         );
     }
 

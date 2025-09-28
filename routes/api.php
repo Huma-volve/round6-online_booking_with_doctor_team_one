@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController as RegisterController;
 use App\Http\Controllers\Auth\LoginController as LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,3 +95,13 @@ Route::controller(LoginController::class)->prefix('login')->group(function () {
     Route::post('verify-phone-otp', 'verifyOtp');
 });
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
+
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/cards', [CardController::class, 'index']);
+    Route::post('/cards', [CardController::class, 'store']);
+    Route::patch('/cards/{id}/default', [CardController::class, 'setDefault']);
+    Route::delete('/cards/{id}', [CardController::class, 'destroy']);
+});

@@ -29,6 +29,8 @@ class User extends Authenticatable
         'birthday',
         'profile_image',
         'phone',
+        'stripe_customer_id',
+
     ];
 
     /**
@@ -64,5 +66,10 @@ class User extends Authenticatable
     public function defaultAddress()
     {
         return $this->hasOne(Address::class)->where('is_default', true);
+    }
+
+    public function paymentMethods()
+    {
+        return $this->hasMany(UserPaymentMethod::class);
     }
 }
