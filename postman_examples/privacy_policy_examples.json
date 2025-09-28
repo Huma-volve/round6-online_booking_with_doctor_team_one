@@ -1,0 +1,49 @@
+{
+  "examples": [
+    {
+      "name": "Privacy Policy - Basic Version",
+      "description": "Simple privacy policy for basic testing",
+      "data": {
+        "title": "Privacy Policy",
+        "content": "We collect your personal information to provide healthcare services. This includes your name, email, phone number, and medical information. We use this data to schedule appointments, manage your health records, and communicate with you about your care. We do not sell your information to third parties. You can request access to your data or request deletion at any time.",
+        "type": "privacy_policy"
+      }
+    },
+    {
+      "name": "Privacy Policy - Detailed Version",
+      "description": "Comprehensive privacy policy with all sections",
+      "data": {
+        "title": "Comprehensive Privacy Policy",
+        "content": "# Privacy Policy\n\n## Information We Collect\n\n### Personal Information\n- Name, email address, phone number\n- Medical history and current conditions\n- Insurance information\n- Emergency contact details\n\n### Technical Information\n- IP address and device information\n- Browser type and version\n- Usage patterns and preferences\n- Location data (with consent)\n\n## How We Use Your Information\n\n### Primary Uses\n- Booking and managing appointments\n- Maintaining medical records\n- Sending appointment reminders\n- Processing payments\n\n### Secondary Uses\n- Improving our services\n- Analytics and research (anonymized)\n- Marketing communications (with consent)\n- Legal compliance\n\n## Data Security\n\nWe implement industry-standard security measures including:\n- Encryption of all data in transit and at rest\n- Regular security audits\n- Access controls and authentication\n- Staff training on data protection\n\n## Your Rights\n\nYou have the right to:\n- Access your personal data\n- Correct inaccurate information\n- Request data deletion\n- Opt-out of marketing communications\n- Data portability\n\n## Contact Information\n\nFor privacy concerns, contact us at:\n- Email: privacy@doctorbooking.com\n- Phone: 1-800-PRIVACY\n- Address: 123 Privacy Street, Data City, DC 12345",
+        "type": "privacy_policy"
+      }
+    },
+    {
+      "name": "Privacy Policy - GDPR Compliant",
+      "description": "Privacy policy compliant with GDPR regulations",
+      "data": {
+        "title": "GDPR Compliant Privacy Policy",
+        "content": "# Privacy Policy (GDPR Compliant)\n\n## Data Controller\n\nDoctorBooking System is the data controller for your personal information.\n\n## Legal Basis for Processing\n\nWe process your personal data based on:\n- **Consent**: For marketing communications\n- **Contract**: To provide healthcare services\n- **Legal Obligation**: For medical record keeping\n- **Legitimate Interest**: For service improvement\n\n## Data Subject Rights (GDPR)\n\nUnder GDPR, you have the following rights:\n\n### Right of Access (Article 15)\n- Request copies of your personal data\n- Information about processing purposes\n- Data retention periods\n\n### Right to Rectification (Article 16)\n- Correct inaccurate personal data\n- Complete incomplete information\n\n### Right to Erasure (Article 17)\n- Request deletion of personal data\n- \"Right to be forgotten\"\n\n### Right to Restrict Processing (Article 18)\n- Limit how we use your data\n- Temporary restrictions\n\n### Right to Data Portability (Article 20)\n- Receive your data in structured format\n- Transfer to another service\n\n### Right to Object (Article 21)\n- Object to processing based on legitimate interest\n- Opt-out of direct marketing\n\n## Data Retention\n\n- **Medical Records**: 7 years (legal requirement)\n- **Account Data**: Until account deletion\n- **Marketing Data**: Until consent withdrawn\n- **Analytics Data**: 2 years (anonymized)\n\n## International Transfers\n\nYour data may be transferred to countries outside the EEA with adequate protection or appropriate safeguards.\n\n## Data Protection Officer\n\nContact our DPO at: dpo@doctorbooking.com\n\n## Supervisory Authority\n\nYou have the right to lodge a complaint with your local data protection authority.",
+        "type": "privacy_policy"
+      }
+    },
+    {
+      "name": "Privacy Policy - Healthcare Specific",
+      "description": "Privacy policy specifically for healthcare platform",
+      "data": {
+        "title": "Healthcare Privacy Policy",
+        "content": "# Healthcare Privacy Policy\n\n## HIPAA Compliance\n\nWe are committed to protecting your health information in accordance with HIPAA (Health Insurance Portability and Accountability Act) regulations.\n\n## Protected Health Information (PHI)\n\nWe collect and maintain the following PHI:\n- Medical diagnoses and treatment plans\n- Prescription medications and dosages\n- Lab results and test reports\n- Appointment history and notes\n- Insurance and billing information\n\n## Uses and Disclosures\n\n### Treatment\n- Share information with your healthcare providers\n- Coordinate care between specialists\n- Maintain continuity of care\n\n### Payment\n- Process insurance claims\n- Handle billing and payments\n- Verify insurance coverage\n\n### Healthcare Operations\n- Quality improvement activities\n- Staff training and education\n- Administrative functions\n\n## Patient Rights\n\n### Access Rights\n- Request copies of your medical records\n- Receive information in your preferred format\n- Access records within 30 days\n\n### Amendment Rights\n- Request corrections to your records\n- Add statements to your file\n- Challenge inaccurate information\n\n### Accounting of Disclosures\n- Request list of who accessed your information\n- Know when and why information was shared\n\n### Restrictions\n- Request limits on information sharing\n- Restrict certain uses and disclosures\n\n## Security Safeguards\n\n### Administrative Safeguards\n- Designated privacy officer\n- Staff training and awareness\n- Incident response procedures\n\n### Physical Safeguards\n- Secure facilities and equipment\n- Access controls and monitoring\n- Workstation security\n\n### Technical Safeguards\n- Encryption and authentication\n- Audit logs and monitoring\n- Automatic logoff procedures\n\n## Breach Notification\n\nIn case of a breach involving your PHI, we will:\n- Notify you within 60 days\n- Report to HHS within 60 days\n- Provide details about the breach\n- Offer identity protection services\n\n## Contact Information\n\nPrivacy Officer: privacy@doctorbooking.com\nPhone: 1-800-HIPAA-01\nAddress: 123 Health Privacy Ave, Medical City, MC 12345",
+        "type": "privacy_policy"
+      }
+    },
+    {
+      "name": "Privacy Policy - Mobile App Specific",
+      "description": "Privacy policy for mobile application features",
+      "data": {
+        "title": "Mobile App Privacy Policy",
+        "content": "# Mobile App Privacy Policy\n\n## App Permissions\n\nOur mobile app may request the following permissions:\n\n### Camera Access\n- **Purpose**: Take photos of documents, prescriptions, or medical records\n- **Usage**: Upload insurance cards, prescription labels, or wound photos\n- **Control**: You can deny or revoke this permission anytime\n\n### Location Services\n- **Purpose**: Find nearby healthcare providers and hospitals\n- **Usage**: Show providers within your area, emergency services location\n- **Control**: You can disable location services in app settings\n\n### Microphone Access\n- **Purpose**: Voice notes for appointments and medical history\n- **Usage**: Record symptoms, medication reminders, or doctor instructions\n- **Control**: Permission requested only when using voice features\n\n### Notifications\n- **Purpose**: Appointment reminders, medication alerts, health tips\n- **Usage**: Push notifications for important health-related updates\n- **Control**: Manage notification preferences in app settings\n\n## Mobile Data Collection\n\n### Device Information\n- Device model and operating system\n- App version and installation date\n- Unique device identifiers\n- Network information (WiFi, cellular)\n\n### Usage Analytics\n- App features used most frequently\n- Time spent in different sections\n- Error reports and crash logs\n- Performance metrics\n\n### Offline Functionality\n- Cached medical records for offline access\n- Appointment schedules stored locally\n- Medication reminders and alerts\n- Emergency contact information\n\n## Data Synchronization\n\n### Cloud Backup\n- Your data is automatically backed up to secure servers\n- Sync across multiple devices\n- Real-time updates between app and web platform\n\n### Local Storage\n- Limited data stored on your device\n- Encrypted local database\n- Automatic cleanup of old data\n\n## App Store Compliance\n\n### iOS App Store\n- Compliant with Apple's privacy guidelines\n- App Store privacy labels updated\n- iOS-specific privacy controls respected\n\n### Google Play Store\n- Follows Google Play privacy requirements\n- Data safety section completed\n- Android permissions properly declared\n\n## Third-Party Services\n\n### Analytics\n- Google Analytics for app usage insights\n- Firebase for crash reporting\n- Mixpanel for user behavior analysis\n\n### Payment Processing\n- Stripe for secure payment processing\n- Apple Pay and Google Pay integration\n- PCI DSS compliant payment handling\n\n## App Updates\n\nWhen you update the app:\n- New privacy features may be added\n- Data collection methods may change\n- You'll be notified of significant changes\n- Continued use indicates acceptance\n\n## Contact Information\n\nApp Support: appsupport@doctorbooking.com\nPrivacy Questions: mobileprivacy@doctorbooking.com\nTechnical Issues: techsupport@doctorbooking.com",
+        "type": "privacy_policy"
+      }
+    }
+  ]
+}

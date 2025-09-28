@@ -1,0 +1,182 @@
+{
+  "faq_examples": [
+    {
+      "name": "Basic FAQ - How to Book Appointment",
+      "description": "Simple FAQ about booking appointments",
+      "data": {
+        "question": "How do I book an appointment with a doctor?",
+        "answer": "To book an appointment, simply log into your account, click on 'Book Appointment', select your preferred doctor, choose an available time slot, and confirm your booking. You'll receive a confirmation email with all the details.",
+        "order": 1,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Payment FAQ - Accepted Methods",
+      "description": "FAQ about payment methods",
+      "data": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept all major credit cards (Visa, MasterCard, American Express, Discover), debit cards, PayPal, Apple Pay, and Google Pay. All payments are processed securely through our encrypted payment system.",
+        "order": 2,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Cancellation FAQ - Policy",
+      "description": "FAQ about cancellation policy",
+      "data": {
+        "question": "What is your cancellation policy?",
+        "answer": "You can cancel your appointment up to 24 hours before the scheduled time for a full refund. Cancellations made within 24 hours may be subject to a cancellation fee. Please contact our support team for assistance with cancellations.",
+        "order": 3,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Technical FAQ - Login Issues",
+      "description": "FAQ about login problems",
+      "data": {
+        "question": "I can't log into my account. What should I do?",
+        "answer": "If you're having trouble logging in, try resetting your password using the 'Forgot Password' link. Make sure you're using the correct email address and check your spam folder for reset emails. If the problem persists, contact our support team.",
+        "order": 4,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Profile FAQ - Updating Information",
+      "description": "FAQ about updating profile",
+      "data": {
+        "question": "How do I update my profile information?",
+        "answer": "To update your profile, log into your account and go to 'My Profile' section. You can update your personal information, contact details, insurance information, and medical history. Make sure to save your changes before leaving the page.",
+        "order": 5,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Emergency FAQ - When to Call 911",
+      "description": "FAQ about emergency situations",
+      "data": {
+        "question": "When should I call 911 instead of using this platform?",
+        "answer": "Call 911 immediately for life-threatening emergencies such as chest pain, difficulty breathing, severe bleeding, loss of consciousness, or signs of stroke. Our platform is designed for non-emergency medical consultations and appointment bookings only.",
+        "order": 6,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Insurance FAQ - Coverage",
+      "description": "FAQ about insurance coverage",
+      "data": {
+        "question": "Do you accept insurance?",
+        "answer": "Yes, we accept most major insurance plans. Before your appointment, please verify your coverage with your insurance provider. You may be responsible for copays, deductibles, or services not covered by your insurance plan.",
+        "order": 7,
+        "status": "active"
+      }
+    },
+    {
+      "name": "App FAQ - Mobile App",
+      "description": "FAQ about mobile app",
+      "data": {
+        "question": "Is there a mobile app available?",
+        "answer": "Yes, our mobile app is available for both iOS and Android devices. You can download it from the App Store or Google Play Store. The app provides all the same features as our website, including appointment booking, messaging with doctors, and accessing your medical records.",
+        "order": 8,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Privacy FAQ - Data Security",
+      "description": "FAQ about data privacy",
+      "data": {
+        "question": "How is my medical information protected?",
+        "answer": "We take your privacy seriously and comply with HIPAA regulations. All medical information is encrypted and stored securely. Only authorized healthcare providers and you can access your medical records. We never share your information with third parties without your consent.",
+        "order": 9,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Support FAQ - Contact Information",
+      "description": "FAQ about customer support",
+      "data": {
+        "question": "How can I contact customer support?",
+        "answer": "You can contact our customer support team through the 'Help' section in your account, email us at support@doctorbooking.com, or call our toll-free number at 1-800-DOCTOR-1. Our support team is available Monday through Friday, 8 AM to 8 PM EST.",
+        "order": 10,
+        "status": "active"
+      }
+    },
+    {
+      "name": "Inactive FAQ - Testing Status",
+      "description": "FAQ with inactive status for testing",
+      "data": {
+        "question": "This is an inactive FAQ for testing purposes",
+        "answer": "This FAQ has an inactive status and should not appear in the main FAQ list. It's used for testing the status functionality of the FAQ system.",
+        "order": 11,
+        "status": "inactive"
+      }
+    },
+    {
+      "name": "Draft FAQ - No Order",
+      "description": "FAQ without order field for testing auto-assignment",
+      "data": {
+        "question": "This FAQ has no order specified",
+        "answer": "This FAQ was created without specifying an order number. The system should automatically assign the next available order number. This is useful for testing the auto-order assignment functionality.",
+        "status": "active"
+      }
+    }
+  ],
+  "testing_scenarios": [
+    {
+      "scenario": "Create FAQ with all fields",
+      "method": "POST",
+      "url": "/api/faqs",
+      "body": {
+        "question": "How do I reset my password?",
+        "answer": "Click on 'Forgot Password' on the login page, enter your email address, and follow the instructions in the email you receive. Make sure to check your spam folder if you don't see the email within a few minutes.",
+        "order": 12,
+        "status": "active"
+      }
+    },
+    {
+      "scenario": "Create FAQ without order (auto-assigned)",
+      "method": "POST",
+      "url": "/api/faqs",
+      "body": {
+        "question": "What are your business hours?",
+        "answer": "Our platform is available 24/7 for booking appointments and accessing your account. However, doctor availability varies by provider. Most doctors are available during standard business hours, but some offer evening and weekend appointments.",
+        "status": "active"
+      }
+    },
+    {
+      "scenario": "Create FAQ with inactive status",
+      "method": "POST",
+      "url": "/api/faqs",
+      "body": {
+        "question": "This FAQ is inactive",
+        "answer": "This FAQ has inactive status and should not appear in the main FAQ list when fetching active FAQs only.",
+        "order": 13,
+        "status": "inactive"
+      }
+    },
+    {
+      "scenario": "Update FAQ order",
+      "method": "PUT",
+      "url": "/api/faqs/1",
+      "body": {
+        "order": 99
+      }
+    },
+    {
+      "scenario": "Update FAQ status",
+      "method": "PUT",
+      "url": "/api/faqs/1",
+      "body": {
+        "status": "inactive"
+      }
+    },
+    {
+      "scenario": "Update FAQ question and answer",
+      "method": "PUT",
+      "url": "/api/faqs/1",
+      "body": {
+        "question": "Updated: How do I book an appointment with a doctor?",
+        "answer": "Updated answer: To book an appointment, simply log into your account, click on 'Book Appointment', select your preferred doctor, choose an available time slot, and confirm your booking. You'll receive a confirmation email with all the details. You can also use our mobile app for easier booking."
+      }
+    }
+  ]
+}
