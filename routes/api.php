@@ -71,16 +71,18 @@ Route::prefix('faqs')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function () {
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::put('/profile', [ProfileController::class, 'update']);
 
-  Route::put('/profile', [ProfileController::class, 'update']);
 
-  Route::get('/profile/addresses', [AddressController::class, 'index']);
-  Route::post('/profile/addresses', [AddressController::class, 'store']);
-  Route::put('/profile/addresses/{address}', [AddressController::class, 'update']);
-  Route::delete('/profile/addresses/{address}', [AddressController::class, 'destroy']);
-  Route::patch('/profile/addresses/{address}/default', [AddressController::class, 'setDefault']);
+    // Addresses
+    Route::get('/profile/addresses', [AddressController::class, 'index']);
+    Route::post('/profile/addresses', [AddressController::class, 'store']);
+    Route::put('/profile/addresses/{address}', [AddressController::class, 'update']);
+    Route::delete('/profile/addresses/{address}', [AddressController::class, 'destroy']);
+    Route::patch('/profile/addresses/{address}/default', [AddressController::class, 'setDefault']);
 });
-
 
 
 //Authentication
