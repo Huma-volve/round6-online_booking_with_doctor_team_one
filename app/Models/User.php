@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function favorites()
+    {
+        return $this->hasMany(Favourite::class, 'user_id');
+    }
+
+    // get doctors this patient favorited
+    public function favoriteDoctors()
+    {
+        return $this->belongsToMany(Doctor::class, 'favorites', 'user_id', 'doctor_id');
+    }
 }
