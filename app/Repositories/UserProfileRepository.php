@@ -16,15 +16,7 @@ class UserProfileRepository implements UserProfileRepositoryInterface
      */
     public function updateProfile(User $user, array $data): User
     {
-        // Handle profile image upload if present
-        if (isset($data['profile_image']) && $data['profile_image'] instanceof \Illuminate\Http\UploadedFile) {
-            $path = $data['profile_image']->store('profile_images', 'public');
-            $data['profile_image'] = $path;
-        }
-
-        // Update user record
         $user->update($data);
-
         return $user->fresh();
     }
 }
