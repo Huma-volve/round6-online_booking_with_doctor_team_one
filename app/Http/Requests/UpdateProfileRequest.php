@@ -22,6 +22,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
+
             'name' => ['sometimes', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:20', 'unique:users,phone,' . $this->user()->id],
             'birthday' => ['nullable', 'date', 'before:today'],

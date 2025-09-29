@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController as RegisterController;
 use App\Http\Controllers\Auth\LoginController as LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,7 @@ Route::prefix('faqs')->group(function () {
 });
 
 
+
 Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
@@ -104,3 +106,13 @@ Route::prefix('reviews')->controller(ReviewController::class)->group(function ()
     Route::get('/{doctorId}', 'getDoctorReviews');
     Route::get('/{doctorId}/average', 'getDoctorAverageRating');
 });
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/cards', [CardController::class, 'index']);
+    Route::post('/cards', [CardController::class, 'store']);
+    Route::patch('/cards/{id}/default', [CardController::class, 'setDefault']);
+    Route::delete('/cards/{id}', [CardController::class, 'destroy']);
+});
+
