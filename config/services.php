@@ -34,6 +34,7 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
@@ -44,5 +45,13 @@ return [
         'client_secret' => env('Facebook_CLIENT_SECRET'),
         'redirect' => env('Facebook_CALLBACK_URL'),
     ],
+
+    'stripe' => [
+        'STRIPE_BASE_URL' => env('STRIPE_BASE_URL'),
+        'STRIPE_SECRET_KEY' => env('STRIPE_SECRET_KEY'),
+        'STRIPE_PUBLISHABLE_KEY' => env('STRIPE_PUBLISHABLE_KEY'),
+
+    ]
+
 
 ];

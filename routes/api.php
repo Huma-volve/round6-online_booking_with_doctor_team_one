@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\PhoneLoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\ForegetPasswordController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,7 @@ Route::prefix('faqs')->group(function () {
 });
 
 
+
 Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
@@ -111,3 +113,13 @@ Route::controller(ForegetPasswordController::class)->prefix('password')->group(f
 });
 Route::put('password/update',[UpdatePasswordController::class,'changePassword'])->middleware('auth:sanctum');
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
+
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/cards', [CardController::class, 'index']);
+    Route::post('/cards', [CardController::class, 'store']);
+    Route::patch('/cards/{id}/default', [CardController::class, 'setDefault']);
+    Route::delete('/cards/{id}', [CardController::class, 'destroy']);
+});
