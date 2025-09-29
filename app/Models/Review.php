@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Review extends Model
 {
-    use HasFactory;
-    protected $fillable = ['patient_id', 'doctor_id', 'rating', 'comment', 'is_verified'];
+    protected $fillable = ['user_id', 'doctor_id', 'rating', 'review_text'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
     }
-
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
-    }
+    
 }
