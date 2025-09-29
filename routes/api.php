@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\Review\ReviewController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\HistoryController;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController as RegisterController;
 use App\Http\Controllers\Auth\LoginController as LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +73,7 @@ Route::prefix('faqs')->group(function () {
 });
 
 
+
 Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
@@ -112,3 +115,20 @@ Route::middleware(['auth:sanctum', 'throttle:search-history'])
         Route::get('/', [HistoryController::class, 'index'])->name('index');
         Route::post('/', [HistoryController::class, 'store'])->name('store');
     });
+
+// Review Routes
+Route::prefix('reviews')->controller(ReviewController::class)->group(function () {
+    Route::post('/', 'addOrUpdateReview');
+    Route::delete('/{doctorId}', 'deleteReview');
+    Route::get('/{doctorId}', 'getDoctorReviews');
+    Route::get('/{doctorId}/average', 'getDoctorAverageRating');
+});
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/cards', [CardController::class, 'index']);
+    Route::post('/cards', [CardController::class, 'store']);
+    Route::patch('/cards/{id}/default', [CardController::class, 'setDefault']);
+    Route::delete('/cards/{id}', [CardController::class, 'destroy']);
+});

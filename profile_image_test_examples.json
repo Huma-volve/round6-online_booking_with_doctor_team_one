@@ -1,0 +1,96 @@
+{
+  "profile_image_testing": {
+    "description": "Simple profile image upload testing examples",
+    "base_url": "http://127.0.0.1:8000/api",
+    "examples": [
+      {
+        "name": "Get Profile (Check Current Image)",
+        "method": "GET",
+        "url": "/profile",
+        "headers": {
+          "Authorization": "Bearer YOUR_TOKEN_HERE",
+          "Accept": "application/json"
+        },
+        "expected_response": {
+          "success": true,
+          "message": "Profile retrieved successfully",
+          "data": {
+            "id": 1,
+            "name": "John Doe",
+            "email": "john@example.com",
+            "profile_image": "profile_images/filename.jpg",
+            "profile_image_url": "http://localhost:8000/storage/profile_images/filename.jpg"
+          }
+        }
+      },
+      {
+        "name": "Update Profile with Image Upload",
+        "method": "PUT",
+        "url": "/profile",
+        "headers": {
+          "Authorization": "Bearer YOUR_TOKEN_HERE",
+          "Accept": "application/json"
+        },
+        "body_type": "form-data",
+        "body": {
+          "name": "John Doe Updated",
+          "profile_image": "[SELECT IMAGE FILE - JPG/PNG/WEBP]"
+        },
+        "expected_response": {
+          "success": true,
+          "message": "Profile updated successfully",
+          "data": {
+            "id": 1,
+            "name": "John Doe Updated",
+            "email": "john@example.com",
+            "profile_image": "profile_images/new_filename.jpg",
+            "profile_image_url": "http://localhost:8000/storage/profile_images/new_filename.jpg"
+          }
+        }
+      },
+      {
+        "name": "Update Profile Text Only (No Image)",
+        "method": "PUT",
+        "url": "/profile",
+        "headers": {
+          "Authorization": "Bearer YOUR_TOKEN_HERE",
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "John Doe Text Update",
+          "phone": "+1234567890",
+          "birthday": "1990-05-15"
+        },
+        "expected_response": {
+          "success": true,
+          "message": "Profile updated successfully",
+          "data": {
+            "id": 1,
+            "name": "John Doe Text Update",
+            "email": "john@example.com",
+            "phone": "+1234567890",
+            "birthday": "1990-05-15",
+            "profile_image": "profile_images/previous_filename.jpg",
+            "profile_image_url": "http://localhost:8000/storage/profile_images/previous_filename.jpg"
+          }
+        }
+      }
+    ],
+    "testing_steps": [
+      "1. Login to get authentication token",
+      "2. GET /api/profile - Check current profile and image",
+      "3. PUT /api/profile - Upload new image (use form-data)",
+      "4. GET /api/profile - Verify image was updated",
+      "5. PUT /api/profile - Update text fields only",
+      "6. GET /api/profile - Verify image still exists"
+    ],
+    "important_notes": [
+      "Use 'form-data' for image uploads, not JSON",
+      "Field name is 'profile_image' (not profile_image_url)",
+      "Image URL is automatically generated and returned as 'profile_image_url'",
+      "Images are stored in storage/app/public/profile_images/",
+      "Images are accessible via http://localhost:8000/storage/profile_images/filename"
+    ]
+  }
+}

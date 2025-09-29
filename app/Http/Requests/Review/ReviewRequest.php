@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Review;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfileRequest extends FormRequest
+class ReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,9 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            'name' => ['sometimes', 'string', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:20', 'unique:users,phone,' . $this->user()->id],
-            'birthday' => ['nullable', 'date', 'before:today'],
-            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'doctor_id' => 'required|exists:doctors,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:1000',
         ];
     }
 }
