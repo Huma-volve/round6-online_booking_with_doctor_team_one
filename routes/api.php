@@ -69,6 +69,7 @@ Route::prefix('faqs')->group(function () {
 });
 
 
+
 Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
