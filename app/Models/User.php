@@ -29,6 +29,8 @@ class User extends Authenticatable
         'birthday',
         'profile_image',
         'phone',
+        'stripe_customer_id',
+
     ];
 
     /**
@@ -81,4 +83,9 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
     
+
+    public function paymentMethods()
+    {
+        return $this->hasMany(UserPaymentMethod::class);
+    }
 }

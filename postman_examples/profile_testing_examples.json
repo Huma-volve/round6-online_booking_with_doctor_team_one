@@ -1,0 +1,253 @@
+{
+  "profile_examples": [
+    {
+      "name": "Update Profile - Basic Information",
+      "description": "Update basic profile information",
+      "method": "PUT",
+      "url": "/api/profile",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      },
+      "body": {
+        "name": "John Doe Updated",
+        "phone": "+1234567890",
+        "birthday": "1990-05-15"
+      }
+    },
+    {
+      "name": "Update Profile - With Image Upload",
+      "description": "Update profile with image upload (use form-data)",
+      "method": "PUT",
+      "url": "/api/profile",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      },
+      "body_type": "form-data",
+      "body": {
+        "name": "John Doe with Image",
+        "phone": "+1234567891",
+        "birthday": "1990-05-15",
+        "profile_image": "[SELECT IMAGE FILE]"
+      }
+    },
+    {
+      "name": "Get Profile Information",
+      "description": "Retrieve current user profile",
+      "method": "GET",
+      "url": "/api/profile",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      }
+    }
+  ],
+  "address_examples": [
+    {
+      "name": "Add Address - Basic",
+      "description": "Add a new address",
+      "method": "POST",
+      "url": "/api/profile/addresses",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      },
+      "body": {
+        "address_line": "123 Main Street, New York, NY 10001",
+        "latitude": 40.7128,
+        "longitude": -74.0060,
+        "is_default": true
+      }
+    },
+    {
+      "name": "Add Address - Without Coordinates",
+      "description": "Add address without latitude/longitude",
+      "method": "POST",
+      "url": "/api/profile/addresses",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      },
+      "body": {
+        "address_line": "456 Oak Avenue, Los Angeles, CA 90210",
+        "is_default": false
+      }
+    },
+    {
+      "name": "Get All Addresses",
+      "description": "Retrieve all user addresses",
+      "method": "GET",
+      "url": "/api/profile/addresses",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      }
+    },
+    {
+      "name": "Update Address",
+      "description": "Update an existing address",
+      "method": "PUT",
+      "url": "/api/profile/addresses/1",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      },
+      "body": {
+        "address_line": "123 Updated Main Street, New York, NY 10001",
+        "latitude": 40.7128,
+        "longitude": -74.0060,
+        "is_default": true
+      }
+    },
+    {
+      "name": "Set Default Address",
+      "description": "Set an address as default",
+      "method": "PUT",
+      "url": "/api/profile/addresses/2",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      },
+      "body": {
+        "is_default": true
+      }
+    },
+    {
+      "name": "Delete Address",
+      "description": "Delete an address",
+      "method": "DELETE",
+      "url": "/api/profile/addresses/1",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
+      }
+    }
+  ],
+  "testing_scenarios": [
+    {
+      "scenario": "Complete Profile Update Flow",
+      "steps": [
+        "1. GET /api/profile - Check current profile",
+        "2. PUT /api/profile - Update basic info",
+        "3. PUT /api/profile - Upload profile image",
+        "4. GET /api/profile - Verify updates"
+      ]
+    },
+    {
+      "scenario": "Address Management Flow",
+      "steps": [
+        "1. POST /api/profile/addresses - Add first address (set as default)",
+        "2. POST /api/profile/addresses - Add second address",
+        "3. GET /api/profile/addresses - Check both addresses",
+        "4. PUT /api/profile/addresses/2 - Set second address as default",
+        "5. GET /api/profile/addresses - Verify default changed",
+        "6. DELETE /api/profile/addresses/1 - Delete first address"
+      ]
+    },
+    {
+      "scenario": "Image Upload Testing",
+      "steps": [
+        "1. PUT /api/profile - Upload image (form-data)",
+        "2. GET /api/profile - Check image URL",
+        "3. PUT /api/profile - Upload different image",
+        "4. GET /api/profile - Verify old image replaced"
+      ]
+    }
+  ],
+  "expected_responses": {
+    "profile_update_success": {
+      "success": true,
+      "message": "Profile updated successfully",
+      "data": {
+        "id": 1,
+        "name": "John Doe Updated",
+        "email": "john@example.com",
+        "phone": "+1234567890",
+        "birthday": "1990-05-15",
+        "profile_image": "profile_images/filename.jpg",
+        "profile_image_url": "http://localhost:8000/storage/profile_images/filename.jpg",
+        "role": "patient",
+        "created_at": "2025-01-24T10:00:00.000000Z",
+        "updated_at": "2025-01-24T11:00:00.000000Z"
+      }
+    },
+    "address_add_success": {
+      "success": true,
+      "message": "Address added successfully",
+      "data": {
+        "id": 1,
+        "user_id": 1,
+        "address_line": "123 Main Street, New York, NY 10001",
+        "latitude": "40.7128000",
+        "longitude": "-74.0060000",
+        "is_default": true,
+        "created_at": "2025-01-24T10:00:00.000000Z",
+        "updated_at": "2025-01-24T10:00:00.000000Z"
+      }
+    },
+    "profile_get_success": {
+      "success": true,
+      "message": "Profile retrieved successfully",
+      "data": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "phone": "+1234567890",
+        "birthday": "1990-05-15",
+        "profile_image": "profile_images/filename.jpg",
+        "profile_image_url": "http://localhost:8000/storage/profile_images/filename.jpg",
+        "role": "patient",
+        "addresses": [
+          {
+            "id": 1,
+            "user_id": 1,
+            "address_line": "123 Main Street, New York, NY 10001",
+            "latitude": "40.7128000",
+            "longitude": "-74.0060000",
+            "is_default": true,
+            "created_at": "2025-01-24T10:00:00.000000Z",
+            "updated_at": "2025-01-24T10:00:00.000000Z"
+          }
+        ],
+        "default_address": {
+          "id": 1,
+          "user_id": 1,
+          "address_line": "123 Main Street, New York, NY 10001",
+          "latitude": "40.7128000",
+          "longitude": "-74.0060000",
+          "is_default": true,
+          "created_at": "2025-01-24T10:00:00.000000Z",
+          "updated_at": "2025-01-24T10:00:00.000000Z"
+        },
+        "created_at": "2025-01-24T10:00:00.000000Z",
+        "updated_at": "2025-01-24T11:00:00.000000Z"
+      }
+    }
+  },
+  "validation_errors": {
+    "invalid_image": {
+      "message": "The profile image must be an image.",
+      "errors": {
+        "profile_image": ["The profile image must be an image."]
+      }
+    },
+    "invalid_birthday": {
+      "message": "The birthday must be a date before today.",
+      "errors": {
+        "birthday": ["The birthday must be a date before today."]
+      }
+    },
+    "duplicate_phone": {
+      "message": "The phone has already been taken.",
+      "errors": {
+        "phone": ["The phone has already been taken."]
+      }
+    }
+  }
+}
