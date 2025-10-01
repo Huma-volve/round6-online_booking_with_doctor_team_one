@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hospitals', function (Blueprint $table) {
+        Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->float('rate')->default(0);
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->decimal('price', 8, 2);
+            $table->decimal('rating', 3, 2)->nullable();
+            $table->integer('experience')->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->text('bio')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hospitals');
+        Schema::dropIfExists('doctors');
     }
 };

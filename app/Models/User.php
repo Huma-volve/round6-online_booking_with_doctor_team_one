@@ -26,8 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'birthday',
-        'profile_image',
+        'age',
         'phone',
         'stripe_customer_id',
 
@@ -53,9 +52,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'birthday' => 'date',
-
         ];
+    }
+    public function favorites()
+    {
+        return $this->hasMany(Favourite::class, 'user_id');
+    }
+
+    public function favoriteDoctors()
+    {
+        return $this->belongsToMany(Doctor::class, 'favorites', 'user_id', 'doctor_id');
+
     }
 
     public function social_accounts()
@@ -74,6 +81,12 @@ class User extends Authenticatable
         return $this->hasOne(Address::class)->where('is_default', true);
 
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    
 
     public function paymentMethods()
     {
