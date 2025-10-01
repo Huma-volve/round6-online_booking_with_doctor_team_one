@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\Interfaces\RegisterRepositoryInterface;
 
 class RegisterRepository implements RegisterRepositoryInterface
 {
