@@ -65,6 +65,12 @@ class User extends Authenticatable
 
     }
 
+    public function social_accounts()
+    {
+        return $this->hasMany(SocialAccoutns::class);
+    }
+
+
     public function addresses()
     {
         return $this->hasMany(Address::class);
@@ -73,6 +79,7 @@ class User extends Authenticatable
     public function defaultAddress()
     {
         return $this->hasOne(Address::class)->where('is_default', true);
+
     }
 
     public function reviews()

@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\Interfaces\LoginRepositoryInterface;
 class LoginRepository implements LoginRepositoryInterface
 {
     public function findByEmail(string $email)
