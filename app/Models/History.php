@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class History extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'address',
-        'latitude',
-        'longitude',
-        'is_default',
+        'search_term',
+        'location',
+        'search_lat',
+        'search_long',
     ];
-    
+
     protected $casts = [
-        'latitude' => 'decimal:7',
-        'longitude' => 'decimal:7',
+        'search_lat' => 'decimal:7',
+        'search_long' => 'decimal:7',
     ];
 
     public function user()

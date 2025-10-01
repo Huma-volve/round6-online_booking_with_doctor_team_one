@@ -5,25 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class Hospital extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'name',
         'address',
+        'city',
         'latitude',
         'longitude',
-        'is_default',
+        'rate',
     ];
-    
+
     protected $casts = [
         'latitude' => 'decimal:7',
         'longitude' => 'decimal:7',
+        'rate' => 'float',
     ];
 
-    public function user()
+    public function doctors()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Doctor::class, 'doctor_hospital', 'hospital_id', 'doctor_id');
     }
 }

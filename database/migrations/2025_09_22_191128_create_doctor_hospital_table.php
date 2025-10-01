@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('search_history', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('search_text');
-            $table->timestamp('searched_at')->useCurrent();
+        Schema::create('doctor_hospital', function (Blueprint $table) {
+            $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
+            $table->foreignId('hospital_id')->constrained()->onDelete('cascade');
+            $table->primary(['doctor_id', 'hospital_id']);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('search_history');
+        Schema::dropIfExists('doctor_hospital');
     }
 };

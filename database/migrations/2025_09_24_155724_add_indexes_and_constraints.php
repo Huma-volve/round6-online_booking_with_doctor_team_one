@@ -17,12 +17,6 @@ return new class extends Migration
             $table->unique(['user_id', 'doctor_id']);
         });
 
-        Schema::table('doctor_profiles', function (Blueprint $table) {
-            $table->unique('user_id');
-            $table->index('specialty_id');
-            $table->index('hospital_id');
-        });
-
         Schema::table('pages', function (Blueprint $table) {
             $table->unique('type');
         });
@@ -61,9 +55,9 @@ return new class extends Migration
             $table->index('expires_at');
         });
 
-        Schema::table('search_history', function (Blueprint $table) {
+        Schema::table('histories', function (Blueprint $table) {
             $table->index('user_id');
-            $table->index('searched_at');
+            $table->index('created_at');
         });
 
         Schema::table('hospitals', function (Blueprint $table) {
@@ -94,12 +88,6 @@ return new class extends Migration
             $table->dropUnique(['user_id', 'doctor_id']);
             $table->dropIndex(['user_id']);
             $table->dropIndex(['doctor_id']);
-        });
-
-        Schema::table('doctor_profiles', function (Blueprint $table) {
-            $table->dropUnique(['user_id']);
-            $table->dropIndex(['specialty_id']);
-            $table->dropIndex(['hospital_id']);
         });
 
         Schema::table('pages', function (Blueprint $table) {
@@ -140,9 +128,9 @@ return new class extends Migration
             $table->dropIndex(['expires_at']);
         });
 
-        Schema::table('search_history', function (Blueprint $table) {
+        Schema::table('histories', function (Blueprint $table) {
             $table->dropIndex(['user_id']);
-            $table->dropIndex(['searched_at']);
+            $table->dropIndex(['created_at']);
         });
 
         Schema::table('hospitals', function (Blueprint $table) {
